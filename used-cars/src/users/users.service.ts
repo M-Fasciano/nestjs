@@ -9,10 +9,9 @@ export class UsersService {
 
   create(email: string, password: string) {
     const user = this.repo.create({ email, password });
-    
+
     return this.repo.save(user);
   }
-
 
   findOne(id: number) {
     return this.repo.findOne(id);
@@ -35,7 +34,7 @@ export class UsersService {
 
   async remove(id: number) {
     const user = await this.findOne(id);
-    
+
     if (!user) {
       throw new NotAcceptableException('user not found');
     }
