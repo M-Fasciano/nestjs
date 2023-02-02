@@ -55,6 +55,7 @@ describe('AuthService', () => {
 
   it('throws an error if user signs up with email that is in use', async () => {
     await service.signup('asdf@asdf.com', 'asdf');
+
     await expect(service.signup('asdf@asdf.com', 'asdf')).rejects.toThrow(
       BadRequestException,
     );
@@ -68,6 +69,7 @@ describe('AuthService', () => {
 
   it('throws if an invalid password is provided', async () => {
     await service.signup('laskdjf@alskdfj.com', 'password');
+
     await expect(
       service.signin('laskdjf@alskdfj.com', 'laksdlfkj'),
     ).rejects.toThrow(BadRequestException);
