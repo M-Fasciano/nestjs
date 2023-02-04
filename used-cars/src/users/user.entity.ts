@@ -1,10 +1,10 @@
 import {
+  AfterInsert,
+  AfterRemove,
+  AfterUpdate,
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  AfterInsert,
-  AfterUpdate,
-  AfterRemove,
 } from 'typeorm';
 
 @Entity()
