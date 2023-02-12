@@ -1,4 +1,3 @@
-import { Transform } from 'class-transformer';
 import {
   IsString,
   IsNumber,
@@ -7,6 +6,7 @@ import {
   IsLongitude,
   IsLatitude,
 } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class GetEstimateDto {
   @IsString()
