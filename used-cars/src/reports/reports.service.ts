@@ -20,7 +20,7 @@ export class ReportsService {
       .andWhere('lat - :lat BETWEEN -5 AND 5', { lat })
       .andWhere('year - :year BETWEEN -3 AND 3', { year })
       .andWhere('approved IS TRUE')
-      .orderBy('mileage - :mileage', 'DESC')
+      .orderBy('ABS(mileage - :mileage)', 'DESC')
       .setParameters({ mileage })
       .limit(3)
       .getRawOne();
@@ -29,13 +29,11 @@ export class ReportsService {
   create(reportDto: CreateReportDto, user: User) {
     const report = this.repo.create(reportDto);
     report.user = user;
-
     return this.repo.save(report);
   }
 
   async changeApproval(id: string, approved: boolean) {
-    const report = await this.repo.findOne({ where: { id: parseInt(id) } });
-
+    const report = await this.repo.findOne(id);
     if (!report) {
       throw new NotFoundException('report not found');
     }
